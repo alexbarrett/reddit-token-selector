@@ -1,0 +1,40 @@
+Note
+     Front-end: Use Angular, React or the framework of your choice.
+     Back-end:  Use NodeJS (preferably) + any fancy plugins you find suitable for the task at hand. Other back-ends are acceptable too.
+
+     You can use Google, your Github profile, peek into your older projects or use any code sharing websites you find relevant.
+
+     You can use Wikipedia for the text. ~400 words. The content and language is irrelevant.
+
+Assignment description
+     Develop a Backend + Front-end solution that allows your user to annotate a blob of text.   The user wants to be able to select a substring of the text document and persist the selection to the server. Based on the criteria defined below at Task 3 the server decides what type of label will associate to the selection.
+
+    All users, share the same annotations and the same content. Single user with full read/write permissions. No login, no Auth and no user context.
+
+    KEEP IT SIMPLE!
+    Try to ship as few bugs as possible.
+    Focus on a minimal usable interface. Functionality takes priority over design.
+
+Task 1
+    Allow the selection of a single token, at once. Display the selected token in a visually distinctive way.
+    The page can only contain a single selected token.
+
+    A token cannot contain ' ' (space), ','(comma) or '.'(dot). Everything else is eligible for being selected.
+
+    The user cannot select "There will be" in the same operation. This attempt will result in having only the word "there" selected. The user will have to select each individual word separately;
+
+    A selection that starts inside the content of the token will consider the entire token. "The|re will be" will select the token 'There', where | can be read as the starting position of the cursor.
+
+    When a token gets selected, any other token that is selected on the page becomes unselected. A page can have zero or 1 token at a time. The currently active selected token should be visible on the page in a distinctive way/highlighted/ bold/colored differently.
+
+    The selected token is persisted to server and displayed on the page when the page is reloaded, loaded in a different browser.
+
+ Task 2
+    The page may have multiple selected tokens;
+    A token can be deselected.
+All data is persisted on the server.
+
+Task 3
+    When the user selects a word that starts with a vowel it gets associated the tag 'Baky'; all other tokens get associated with the tag 'Kola'. Display them differently in the UI.
+
+    Done!

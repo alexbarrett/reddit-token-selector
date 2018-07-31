@@ -1,0 +1,18 @@
+.content {
+  white-space: pre-wrap;
+}
+
+.content span:hover {
+  cursor: pointer;
+  outline: 1px dashed cornflowerblue;
+}
+
+.content span.baky.selected {
+  background: orangered;
+  color: white;
+}
+
+.content span.kola.selected {
+  background: blueviolet;
+  color: white;
+}
