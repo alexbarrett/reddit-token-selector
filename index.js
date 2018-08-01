@@ -5,22 +5,39 @@ const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 
+let tokenCount = 0;
 const rawContent = fs.readFileSync("content.txt", "utf8");
 const htmlContent = rawContent.replace(/[^.,\s]+/g, m => {
+  tokenCount++;
   const className = m.match(/^[aeiou]/i) ? "baky" : "kola";
   return `<span class="${className}">${escapeHtml(m)}</span>`;
 });
 const selectedTokens = new Set();
 
+function validateTokenIndex(f) {
+  return ({ tokenIndex }) => {
+    tokenIndex = parseInt(tokenIndex, 10);
+    if (tokenIndex >= 0 && tokenIndex < tokenCount) {
+      f({ tokenIndex });
+    }
+  };
+}
+
 io.on("connection", socket => {
-  socket.on("select", ({ tokenIndex }) => {
-    selectedTokens.add(tokenIndex);
-    socket.broadcast.emit("select", { tokenIndex });
-  });
-  socket.on("deselect", ({ tokenIndex }) => {
-    selectedTokens.delete(tokenIndex);
-    socket.broadcast.emit("deselect", { tokenIndex });
-  });
+  socket.on(
+    "select",
+    validateTokenIndex(({ tokenIndex }) => {
+      selectedTokens.add(tokenIndex);
+      socket.broadcast.emit("select", { tokenIndex });
+    })
+  );
+  socket.on(
+    "deselect",
+    validateTokenIndex(({ tokenIndex }) => {
+      selectedTokens.delete(tokenIndex);
+      socket.broadcast.emit("deselect", { tokenIndex });
+    })
+  );
 });
 
 app.get("/", (req, res) => {

@@ -10,7 +10,7 @@ Notes
 -----
 
 This code is very rough around the edges. My goal was to finish relatively
-quickly so there is no testing, no comments, etc. Time take: 1 hour 10 minutes
+quickly so there is no testing, no comments, etc. Time take: 1 hour 15 minutes
 (excluding writing this readme).
 
 
