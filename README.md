@@ -20,8 +20,3 @@ Implementation
 The server parses the file `content.txt` and wraps each token with a `span` tag. If the token starts with a vowel, the span is given class name "baky", otherwise it's given class name "kola".
 
 On the client-side, when a span element is clicked its index is added to (or removed from) the set of selected token indices and sent to the server via Socket.IO. The server then broadcasts this event to all other connected clients resulting in everyone having a mostly synchronized set of selections.
-
-Potential issues
-----------------
-
-Broadcasting select/deselect events via web socket provides no guarantee about order, so it's possible for clients to become desynchronized from the state of selected tokens held on the server.
